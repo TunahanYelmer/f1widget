@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const nativewind = require('nativewind/preset');
 
-
-
-
 module.exports = {
   content: [
     './App/**/*.{js,jsx,ts,tsx}',
@@ -12,9 +9,9 @@ module.exports = {
     './components/**/*.{js,jsx,ts,tsx}',
     './app/**/*.{js,jsx,ts,tsx}',
   ],
-  presets: [nativewind], // Fix: Ensuring proper preset import
+  presets: [nativewind],
   theme: {
-    extend: {// Fixed fontSize assignment
+    extend: {
       fontFamily: {
         F1Italic400: ['F1Italic400'],
         F1Regular400: ['F1Regular400'],
