@@ -1,0 +1,246 @@
+import { View, Text, Image, Dimensions } from "react-native";
+import { scale, verticalScale, moderateScale } from "react-native-size-matters";
+import React from "react";
+import "@/global.css";
+import TagHeuerWatch from "@/components/TagHeuerWatch";
+
+const NextEvent = () => {
+  // Race date (example: April 28, 2024 at 10:00)
+  const raceDate = new Date(2024, 3, 28, 10, 0, 0);
+
+  return (
+    <View className="flex  mx-4 m-1 justify-center items-center border-2 rounded-lg p-1 text-center bg-formulaDarkGrey">
+      <View className="flex flex-row items-center w-full justify-between mx-1">
+        <View className="flex-row items-center">
+          <Text
+            className="text-white justify-start font-F1Regular900"
+            style={{ fontSize: moderateScale(12) }}
+          >
+            Next Event
+          </Text>
+          
+        </View>
+
+        <Text
+          className="text-white justify-start font-F1Regular900"
+          style={{ fontSize: moderateScale(12) }}
+        >
+          R9
+        </Text>
+      </View>
+      <View className="border-t-2 w-full my-1 border-formulaRed"></View>
+      <View className="flex-row">
+        <View className="flex flex-row justify-center items-center">
+          <View className="flex flex-col">
+            <View className="flex flex-row justify-between m-0.5 ml-3 items-center">
+              <Text
+                className="text-white justify-start font-F1Regular900 w-16"
+                style={{ fontSize: moderateScale(10) }}
+              >
+                FP1
+              </Text>
+              <View className="flex flex-col items-start w-14">
+                <Text
+                  className="text-white font-F1Regular900"
+                  style={{ fontSize: moderateScale(6) }}
+                >
+                  Fri
+                </Text>
+                <Text
+                  className="text-white font-F1Regular900 self-center"
+                  style={{ fontSize: moderateScale(10) }}
+                >
+                  10:00
+                </Text>
+              </View>
+            </View>
+
+            <View className="flex flex-row justify-between m-0.5 ml-3 items-center">
+              <Text
+                className="text-white justify-start font-F1Regular900 w-16"
+                style={{ fontSize: moderateScale(10) }}
+              >
+                FP2
+              </Text>
+              <View className="flex flex-col items-start w-14">
+                <Text
+                  className="text-white font-F1Regular900"
+                  style={{ fontSize: moderateScale(6) }}
+                >
+                  Fri
+                </Text>
+                <Text
+                  className="text-white font-F1Regular900 self-center"
+                  style={{ fontSize: moderateScale(10) }}
+                >
+                  10:00
+                </Text>
+              </View>
+            </View>
+
+            <View className="flex flex-row justify-between m-0.5 ml-3 items-center">
+              <Text
+                className="text-white justify-start font-F1Regular900 w-16"
+                style={{ fontSize: moderateScale(10) }}
+              >
+                FP3
+              </Text>
+              <View className="flex flex-col items-start w-14">
+                <Text
+                  className="text-white font-F1Regular900"
+                  style={{ fontSize: moderateScale(6) }}
+                >
+                  Sat
+                </Text>
+                <Text
+                  className="text-white font-F1Regular900 self-center"
+                  style={{ fontSize: moderateScale(10) }}
+                >
+                  10:00
+                </Text>
+              </View>
+            </View>
+
+            <View className="flex flex-row justify-between m-0.5 ml-3 items-center">
+              <Text
+                className="text-white justify-start font-F1Regular900 w-16"
+                style={{ fontSize: moderateScale(10) }}
+              >
+                Qualy
+              </Text>
+              <View className="flex flex-col items-start w-14">
+                <Text
+                  className="text-white font-F1Regular900"
+                  style={{ fontSize: moderateScale(6) }}
+                >
+                  Sat
+                </Text>
+                <Text
+                  className="text-white font-F1Regular900 self-center"
+                  style={{ fontSize: moderateScale(10) }}
+                >
+                  10:00
+                </Text>
+              </View>
+            </View>
+
+            <View className="flex flex-row justify-between m-0.5 ml-3 items-center">
+              <Text
+                className="text-white justify-start font-F1Regular900 w-16"
+                style={{ fontSize: moderateScale(10) }}
+              >
+                Race
+              </Text>
+              <View className="flex flex-col items-start w-14">
+                <Text
+                  className="text-white font-F1Regular900"
+                  style={{ fontSize: moderateScale(6) }}
+                >
+                  Sun
+                </Text>
+                <Text
+                  className="text-white font-F1Regular900 self-center"
+                  style={{ fontSize: moderateScale(10) }}
+                >
+                  10:00
+                </Text>
+              </View>
+            </View>
+          </View>
+
+          <View className="items-center justify-center">
+            <View className="flex flex-row items-center justify-center">
+              <View className="flex  items-center justify-center">
+                {" "}
+                <View className="flex flex-row items-center justify-center">
+                  {" "}
+                  <Text
+                    className="text-white justify-start font-F1Regular400Wide"
+                    style={{ fontSize: moderateScale(7) }}
+                  >
+                    24
+                  </Text>
+                  <Text
+                    className="text-white justify-start font-F1Regular400Wide"
+                    style={{ fontSize: moderateScale(7) }}
+                  >
+                    -
+                  </Text>
+                  <Text
+                    className="text-white justify-start font-F1Regular400Wide"
+                    style={{ fontSize: moderateScale(7) }}
+                  >
+                    28
+                  </Text>
+                </View>
+                <View className="bg-white rounded-sm ">
+                  <Text
+                    className=" text-formulaDarkGrey font-F1Regular400Wide p-0.5"
+                    style={{ fontSize: moderateScale(8) }}
+                  >
+                    Apr
+                  </Text>
+                </View>
+              </View>
+
+              <View>
+                {" "}
+                <Image
+                  className="mx-1 rounded-sm"
+                  source={require("@/assets/images/netherlands-flag.png")}
+                  style={{
+                    width: scale(40),
+                    height: scale(25)
+                  }}
+                />
+              </View>
+            </View>
+            <View className="flex items-center justify-center">
+              <Image
+                className="mx-1 rounded-sm"
+                source={require("@/assets/images/bahrain-carbon.png")}
+                style={{
+                  width: scale(100),
+                  height: scale(75)
+                }}
+              />
+              <Text
+                className="text-white justify-start font-F1Regular700"
+                style={{ fontSize: moderateScale(6) }}
+              >
+                Spa-Francorchamps
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View className="items-center justify-center">
+         
+          <View className=" w-4/5 border-b-2 border-white ">
+            <Text className="text-white justify-start font-F1Regular900" style={{ fontSize: moderateScale(8) }}>Grand Prix Weekend</Text>
+          </View>
+          <View className="flex flex-row justify-between">
+            <View className="items-center justify-center m-0.5">
+              <View><Text className="text-white justify-start font-F1Regular900" style={{ fontSize: moderateScale(12) }}>12</Text></View>
+              <View><Text className="text-white justify-start font-F1Regular700" style={{ fontSize: moderateScale(8) }}>Days</Text></View>
+            </View>
+            <View className="items-center justify-center m-0.5">
+            <View><Text className="text-white justify-start font-F1Regular900" style={{ fontSize: moderateScale(12) }}>12</Text></View>
+            <View><Text className="text-white justify-start font-F1Regular700" style={{ fontSize: moderateScale(8) }}>Hrs</Text></View>
+            </View>
+            <View className="items-center justify-center m-0.5">
+              
+            <View><Text className="text-white justify-start font-F1Regular900" style={{ fontSize: moderateScale(12) }}>12</Text></View>
+            <View><Text className="text-white justify-start font-F1Regular700" style={{ fontSize: moderateScale(8) }}>Mins</Text></View>
+              <View></View>
+            </View>
+          </View>
+          <View className="items-center">
+            <TagHeuerWatch size={scale(80)} />
+          </View>
+        </View>
+      </View>
+    </View>
+  );
+};
+
+export default NextEvent;
