@@ -1,383 +1,164 @@
-import { View, Text, Image, ScrollView, Animated, Pressable } from "react-native";
-import { scale, verticalScale, moderateScale } from "react-native-size-matters";
+import { View, Text, Image, Pressable } from "react-native";
 import React from "react";
 import "@/global.css";
+import { containerStyles } from "./styles/components/Container.styles";
+import { headerStyles } from "./styles/components/Header.styles";
+import { driverCardStyles } from "./styles/components/DriverCard.styles";
+import { positionBadgeStyles } from "./styles/components/PositionBadge.styles";
+import { teamColorStyles } from "./styles/components/TeamColors.styles";
 
-const PreviousEvent = () => {
+interface PreviousEventProps {
+  mode?: 'race' | 'practice';
+  eventType?: string;
+}
+
+const PreviousEvent: React.FC<PreviousEventProps> = ({ mode = 'race', eventType = 'RACE' }) => {
+  const firstPlaceTime = "1:30.067";
+  const secondPlaceTime = mode === 'race' ? "+12.535" : "1:30.602";
+  const thirdPlaceTime = mode === 'race' ? "+20.866" : "1:31.933";
+
   return (
-    <View 
-      style={{
-        margin: scale(12),
-        backgroundColor: '#1A1A1A',
-        borderRadius: scale(12),
-        overflow: 'hidden',
-        borderWidth: 1,
-        borderColor: '#333333'
-      }}
-    >
-      <View 
-        style={{
-          padding: scale(10),
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          backgroundColor: '#000000'
-        }}
-      >
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+    <View style={containerStyles.container}>
+      <View style={headerStyles.header}>
+        <View className="flex-row items-center">
           <View>
-            <Text
-              style={{ 
-                color: '#FFFFFF',
-                fontSize: moderateScale(14),
-                fontFamily: 'F1Regular900',
-              }}
-            >
-              Suzuka Circuit
-            </Text>
-            <Text
-              style={{ 
-                color: '#666666',
-                fontSize: moderateScale(10),
-                fontFamily: 'F1Regular400',
-              }}
-            >
-              Japanese Grand Prix
-            </Text>
+            <Text style={headerStyles.circuitName}>Suzuka Circuit</Text>
+            <Text style={headerStyles.grandPrixName}>Japanese Grand Prix</Text>
           </View>
-          <View 
-            style={{
-              backgroundColor: '#FFFFFF',
-              padding: scale(4),
-              borderRadius: scale(4),
-              marginLeft: scale(8)
-            }}
-          >
+          <View className="ml-2">
             <Image
               source={require("@/assets/images/netherlands-flag.png")}
-              style={{
-                width: scale(24),
-                height: scale(16),
-                borderRadius: scale(2)
-              }}
+              style={headerStyles.flagImage}
             />
           </View>
         </View>
-        <View 
-          style={{
-            backgroundColor: '#F91536',
-            paddingHorizontal: scale(8),
-            paddingVertical: scale(2),
-            borderRadius: scale(8),
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: scale(2)
-          }}
-        >
-          <Text
-            style={{ 
-              color: '#FFFFFF',
-              fontSize: moderateScale(8),
-              fontFamily: 'F1Regular700',
-              opacity: 0.8
-            }}
-          >
-            ROUND
-          </Text>
-          <Text
-            style={{ 
-              color: '#FFFFFF',
-              fontSize: moderateScale(14),
-              fontFamily: 'F1Regular900'
-            }}
-          >
-            8
-          </Text>
+        <View style={headerStyles.eventTypeBadge}>
+          <Text style={headerStyles.eventTypeText}>{eventType}</Text>
         </View>
       </View>
 
-      <View 
-        style={{ 
-          backgroundColor: '#1A1A1A',
-          padding: scale(8)
-        }}
-      >
-        <Pressable 
-          style={({ pressed }) => ({
-            backgroundColor: pressed ? '#222222' : '#1A1A1A',
-            borderRadius: scale(8),
-            overflow: 'hidden',
-            borderLeftWidth: scale(3),
-            borderLeftColor: '#F91536'
-          })}
-        >
-          <View style={{ padding: scale(8) }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-              <View style={{ flex: 1 }}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: scale(16) }}>
+      <View style={containerStyles.content}>
+        <Pressable>
+          <View className="p-1">
+            <View className="flex-row justify-between items-start">
+              <View className="flex-1">
+                <View style={containerStyles.driversContainer}>
                   {/* 3rd Place */}
-                  <View style={{ alignItems: 'center', width: '30%' }}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: scale(8) }}>
-                      <Text
-                        style={{ 
-                          color: '#FFFFFF',
-                          fontSize: moderateScale(12),
-                          fontFamily: 'F1Regular700',
-                          marginRight: scale(4)
-                        }}
-                      >
-                        Carlos Sainz
+                  <View style={driverCardStyles.driverColumn}>
+                    <View style={driverCardStyles.nameContainer}>
+                      <Text style={driverCardStyles.firstName} numberOfLines={1} adjustsFontSizeToFit>
+                        Carlos
                       </Text>
-                      <Image
-                        source={require("@/assets/images/netherlands-flag.png")}
-                        style={{
-                          width: scale(16),
-                          height: scale(10)
-                        }}
-                      />
-                    </View>
-                    <Text
-                      style={{ 
-                        color: '#F91536',
-                        fontSize: moderateScale(10),
-                        fontFamily: 'F1Regular400',
-                        marginBottom: scale(8)
-                      }}
-                    >
-                      Ferrari
-                    </Text>
-                    <View style={{ 
-                      position: 'relative', 
-                      marginBottom: scale(8),
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: scale(80),
-                      height: scale(60),
-                      backgroundColor: '#F91536'
-                    }}>
-                      <Image
-                        source={require("@/assets/images/leclerc.png")}
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          resizeMode: 'contain'
-                        }}
-                      />
-                      <View 
-                        style={{
-                          width: scale(28),
-                          height: scale(28),
-                          borderRadius: scale(14),
-                          borderWidth: scale(1.5),
-                          borderColor: '#CD7F32',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          backgroundColor: 'transparent',
-                          position: 'absolute',
-                          bottom: scale(-16),
-                          right: scale(-8)
-                        }}
-                      >
-                        <Text
-                          style={{ 
-                            color: '#FFFFFF',
-                            fontSize: moderateScale(14),
-                            fontFamily: 'F1Regular900'
-                          }}
-                        >
-                          3
+                      <View style={driverCardStyles.lastNameContainer}>
+                        <Text style={driverCardStyles.lastName} numberOfLines={1} adjustsFontSizeToFit>
+                          Sainz
                         </Text>
+                        <Image
+                          source={require("@/assets/images/netherlands-flag.png")}
+                          style={driverCardStyles.driverFlag}
+                        />
                       </View>
                     </View>
-                    <Text
-                      style={{ 
-                        color: '#FFFFFF',
-                        fontSize: moderateScale(12),
-                        fontFamily: 'F1Regular700',
-                        marginTop: scale(16)
-                      }}
-                    >
-                      +20.866
+                    <Text style={[driverCardStyles.teamName, teamColorStyles.ferrariColor]} numberOfLines={1} adjustsFontSizeToFit>
+                      Ferrari
                     </Text>
+                    <View style={driverCardStyles.imageContainer}>
+                      <Image
+                        source={require("@/assets/images/leclerc.png")}
+                        style={driverCardStyles.driverImage}
+                        resizeMode="contain"
+                      />
+                    </View>
+                    <View style={driverCardStyles.timeContainer}>
+                      <Text style={[driverCardStyles.timeText, mode === 'race' && driverCardStyles.opacityReduced]}>
+                        {mode === 'race' ? `+${thirdPlaceTime}` : thirdPlaceTime}
+                      </Text>
+                    </View>
                   </View>
 
                   {/* 1st Place */}
-                  <View style={{ alignItems: 'center', width: '30%', marginTop: -scale(16) }}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: scale(8) }}>
-                      <Text
-                        style={{ 
-                          color: '#FFFFFF',
-                          fontSize: moderateScale(12),
-                          fontFamily: 'F1Regular700',
-                          marginRight: scale(4)
-                        }}
-                      >
-                        Max Verstappen
+                  <View style={driverCardStyles.driverColumn}>
+                    <View style={driverCardStyles.nameContainer}>
+                      <Text style={driverCardStyles.firstName} numberOfLines={1} adjustsFontSizeToFit>
+                        Max
                       </Text>
-                      <Image
-                        source={require("@/assets/images/netherlands-flag.png")}
-                        style={{
-                          width: scale(16),
-                          height: scale(10)
-                        }}
-                      />
-                    </View>
-                    <Text
-                      style={{ 
-                        color: '#3671C6',
-                        fontSize: moderateScale(10),
-                        fontFamily: 'F1Regular400',
-                        marginBottom: scale(8)
-                      }}
-                    >
-                      Red Bull Racing
-                    </Text>
-                    <View style={{ 
-                      position: 'relative', 
-                      marginBottom: scale(8),
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: scale(80),
-                      height: scale(60),
-                      backgroundColor: '#3671C6'
-                    }}>
-                      <Image
-                        source={require("@/assets/images/leclerc.png")}
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          resizeMode: 'contain'
-                        }}
-                      />
-                      <View 
-                        style={{
-                          width: scale(28),
-                          height: scale(28),
-                          borderRadius: scale(14),
-                          borderWidth: scale(1.5),
-                          borderColor: '#FFD700',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          backgroundColor: 'transparent',
-                          position: 'absolute',
-                          bottom: scale(-20),
-                          right: scale(-8)
-                        }}
-                      >
-                        <Text
-                          style={{ 
-                            color: '#FFFFFF',
-                            fontSize: moderateScale(14),
-                            fontFamily: 'F1Regular900'
-                          }}
-                        >
-                          1
+                      <View style={driverCardStyles.lastNameContainer}>
+                        <Text style={driverCardStyles.lastName} numberOfLines={1} adjustsFontSizeToFit>
+                          Verstappen
                         </Text>
+                        <Image
+                          source={require("@/assets/images/netherlands-flag.png")}
+                          style={driverCardStyles.driverFlag}
+                        />
                       </View>
                     </View>
-                    <Text
-                      style={{ 
-                        color: '#FFFFFF',
-                        fontSize: moderateScale(12),
-                        fontFamily: 'F1Regular700',
-                        marginTop: scale(16)
-                      }}
-                    >
-                      1:30.067
+                    <Text style={[driverCardStyles.teamName, teamColorStyles.redbullColor]} numberOfLines={1} adjustsFontSizeToFit>
+                      Red Bull Racing
                     </Text>
+                    <View style={driverCardStyles.imageContainer}>
+                      <Image
+                        source={require("@/assets/images/leclerc.png")}
+                        style={driverCardStyles.driverImage}
+                        resizeMode="contain"
+                      />
+                    </View>
+                    <View style={driverCardStyles.timeContainer}>
+                      <Text style={driverCardStyles.timeText}>
+                        {firstPlaceTime}
+                      </Text>
+                    </View>
                   </View>
 
                   {/* 2nd Place */}
-                  <View style={{ alignItems: 'center', width: '30%', marginTop: -scale(8) }}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: scale(8) }}>
-                      <Text
-                        style={{ 
-                          color: '#FFFFFF',
-                          fontSize: moderateScale(12),
-                          fontFamily: 'F1Regular700',
-                          marginRight: scale(4)
-                        }}
-                      >
-                        Sergio Perez
+                  <View style={driverCardStyles.driverColumn}>
+                    <View style={driverCardStyles.nameContainer}>
+                      <Text style={driverCardStyles.firstName} numberOfLines={1} adjustsFontSizeToFit>
+                        Sergio
                       </Text>
-                      <Image
-                        source={require("@/assets/images/netherlands-flag.png")}
-                        style={{
-                          width: scale(16),
-                          height: scale(10)
-                        }}
-                      />
-                    </View>
-                    <Text
-                      style={{ 
-                        color: '#3671C6',
-                        fontSize: moderateScale(10),
-                        fontFamily: 'F1Regular400',
-                        marginBottom: scale(8)
-                      }}
-                    >
-                      Red Bull Racing
-                    </Text>
-                    <View style={{ 
-                      position: 'relative', 
-                      marginBottom: scale(8),
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: scale(80),
-                      height: scale(60),
-                      backgroundColor: '#3671C6'
-                    }}>
-                      <Image
-                        source={require("@/assets/images/leclerc.png")}
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          resizeMode: 'contain'
-                        }}
-                      />
-                      <View 
-                        style={{
-                          width: scale(28),
-                          height: scale(28),
-                          borderRadius: scale(14),
-                          borderWidth: scale(1.5),
-                          borderColor: '#C0C0C0',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          backgroundColor: 'transparent',
-                          position: 'absolute',
-                          bottom: scale(-18),
-                          right: scale(-8)
-                        }}
-                      >
-                        <Text
-                          style={{ 
-                            color: '#FFFFFF',
-                            fontSize: moderateScale(14),
-                            fontFamily: 'F1Regular900'
-                          }}
-                        >
-                          2
+                      <View style={driverCardStyles.lastNameContainer}>
+                        <Text style={driverCardStyles.lastName} numberOfLines={1} adjustsFontSizeToFit>
+                          Perez
                         </Text>
+                        <Image
+                          source={require("@/assets/images/netherlands-flag.png")}
+                          style={driverCardStyles.driverFlag}
+                        />
                       </View>
                     </View>
-                    <Text
-                      style={{ 
-                        color: '#FFFFFF',
-                        fontSize: moderateScale(12),
-                        fontFamily: 'F1Regular700',
-                        marginTop: scale(16)
-                      }}
-                    >
-                      +12.535
+                    <Text style={[driverCardStyles.teamName, teamColorStyles.redbullColor]} numberOfLines={1} adjustsFontSizeToFit>
+                      Red Bull Racing
                     </Text>
+                    <View style={driverCardStyles.imageContainer}>
+                      <Image
+                        source={require("@/assets/images/leclerc.png")}
+                        style={driverCardStyles.driverImage}
+                        resizeMode="contain"
+                      />
+                    </View>
+                    <View style={driverCardStyles.timeContainer}>
+                      <Text style={[driverCardStyles.timeText, mode === 'race' && driverCardStyles.opacityReduced]}>
+                        {mode === 'race' ? `+${secondPlaceTime}` : secondPlaceTime}
+                      </Text>
+                    </View>
                   </View>
                 </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <View style={{ alignItems: 'center', width: '30%', height: scale(4), backgroundColor: '#CD7F32' }} />
-                  <View style={{ alignItems: 'center', width: '30%', height: scale(8), backgroundColor: '#FFD700' }} />
-                  <View style={{ alignItems: 'center', width: '30%', height: scale(6), backgroundColor: '#C0C0C0' }} />
+                <View style={positionBadgeStyles.positionsContainer}>
+                  <View style={positionBadgeStyles.positionColumn}>
+                    <View style={[positionBadgeStyles.positionBadge, positionBadgeStyles.bronzeBorder]}>
+                      <Text style={positionBadgeStyles.positionText}>P3</Text>
+                    </View>
+                  </View>
+                  <View style={positionBadgeStyles.positionColumn}>
+                    <View style={[positionBadgeStyles.positionBadge, positionBadgeStyles.goldBorder]}>
+                      <Text style={positionBadgeStyles.positionText}>P1</Text>
+                    </View>
+                  </View>
+                  <View style={positionBadgeStyles.positionColumn}>
+                    <View style={[positionBadgeStyles.positionBadge, positionBadgeStyles.silverBorder]}>
+                      <Text style={positionBadgeStyles.positionText}>P2</Text>
+                    </View>
+                  </View>
                 </View>
               </View>
             </View>
@@ -389,4 +170,3 @@ const PreviousEvent = () => {
 };
 
 export default PreviousEvent;
-
